@@ -2062,8 +2062,21 @@
       });
       const data = await response.json();
       removeTyping();
-      // support reply, output, text, or message keys from n8n
-      const reply = data.reply || data.output || data.text || data.message || "Got it! We'll be in touch shortly. 🚀";
+
+      // n8n can return: object, array of objects, or nested array [[{...}]]
+      let reply = "Got it! We'll be in touch shortly. 🚀";
+      if (typeof data === 'string') {
+        reply = data;
+      } else if (Array.isArray(data)) {
+        // nested array: [[{ output: "..." }]]
+        const first = Array.isArray(data[0]) ? data[0][0] : data[0];
+        if (first) {
+          reply = first.reply || first.output || first.text || first.message || reply;
+        }
+      } else if (data && typeof data === 'object') {
+        reply = data.reply || data.output || data.text || data.message || reply;
+      }
+
       addMessage(reply, 'bot');
     } catch(err) {
       removeTyping();
