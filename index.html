@@ -116,8 +116,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- ═══ TAILWIND CDN ═══ -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+  <script src="https://cdn.tailwindcss.com"></script>  <script>
     tailwind.config = {
 
       theme: {
@@ -564,9 +563,12 @@
 
       <!-- Logo -->
       <a href="#" class="flex items-center gap-2.5 group">
-        <div class="relative w-6 h-6 flex items-center justify-center">
-          <!-- Hexagon logo mark -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+          <img src="logo.jpg" alt="VezelAI Logo" width="32" height="32"
+               style="object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,168,76,0.5));"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <!-- Fallback SVG if logo.png not found -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" style="display:none">
             <path d="M12 2L20.5 7V17L12 22L3.5 17V7L12 2Z"
               stroke="url(#logoGrad)" stroke-width="1.2" fill="rgba(201,168,76,0.08)"/>
             <circle cx="12" cy="12" r="2" fill="url(#logoGrad2)"/>
@@ -592,16 +594,17 @@
       </a>
 
       <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden md:flex items-center gap-6 lg:gap-8">
         <a href="#hero" class="nav-link">Home</a>
         <a href="#services" class="nav-link">Services</a>
+        <a href="#leadership" class="nav-link">About</a>
         <a href="#stack" class="nav-link">Our Stack</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
 
       <!-- Desktop CTA -->
       <div class="hidden md:flex">
-        <a href="#contact" class="nav-cta px-4 py-2 rounded-lg cursor-pointer">
+        <a href="#contact" class="nav-cta px-4 py-2 rounded-lg cursor-pointer whitespace-nowrap">
           Book a Free Audit ➔
         </a>
       </div>
@@ -619,6 +622,7 @@
   <div id="mobile-menu" class="hidden md:hidden px-5 pb-6 pt-3 flex flex-col gap-4">
     <a href="#hero" class="nav-link py-2 text-base" onclick="closeMobileMenu()">Home</a>
     <a href="#services" class="nav-link py-2 text-base" onclick="closeMobileMenu()">Services</a>
+    <a href="#leadership" class="nav-link py-2 text-base" onclick="closeMobileMenu()">About</a>
     <a href="#stack" class="nav-link py-2 text-base" onclick="closeMobileMenu()">Our Stack</a>
     <a href="#contact" class="nav-link py-2 text-base" onclick="closeMobileMenu()">Contact</a>
     <a href="#contact" class="nav-cta px-5 py-2.5 rounded-lg text-center mt-2" onclick="closeMobileMenu()">Book a Free Audit ➔</a>
@@ -1072,140 +1076,228 @@
       <div class="h-px flex-1" style="background:linear-gradient(90deg,rgba(201,168,76,0.15),transparent)"></div>
     </div>
 
-    <!-- Owner Card — Rehmat Ali (centered, full-width feel) -->
-    <div class="max-w-4xl mx-auto">
-      <div class="prism-card rounded-3xl p-8 sm:p-12 reveal" style="border-color:rgba(167,139,250,0.2)">
-        <div class="ca-tl" style="border-color:rgba(167,139,250,0.4)"></div>
-        <div class="ca-br" style="border-color:rgba(201,168,76,0.3)"></div>
+    <!-- Owner Card — Rehmat Ali — PREMIUM REDESIGN -->
+    <div class="max-w-5xl mx-auto">
+      <div class="reveal" style="position:relative;border-radius:28px;overflow:hidden;
+                  background:linear-gradient(135deg,rgba(10,7,25,0.98),rgba(14,10,32,0.99));
+                  border:1px solid rgba(201,168,76,0.25);
+                  box-shadow:0 0 0 1px rgba(201,168,76,0.08),0 24px 80px rgba(0,0,0,0.7),0 0 100px rgba(123,94,167,0.12);">
 
-        <div class="flex flex-col lg:flex-row gap-10 items-center">
+        <!-- Premium top shimmer bar -->
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;
+                    background:linear-gradient(90deg,transparent 0%,#A78BFA 20%,#C9A84C 45%,#F5E4A8 55%,#C9A84C 70%,#A78BFA 85%,transparent 100%);
+                    z-index:2;"></div>
 
-          <!-- Left: Animated AI + Avatar column -->
-          <div class="flex flex-col items-center gap-6 flex-shrink-0">
+        <!-- Background glow blobs inside card -->
+        <div style="position:absolute;width:400px;height:400px;border-radius:50%;
+                    background:radial-gradient(circle,rgba(167,139,250,0.06),transparent 70%);
+                    top:-100px;left:-100px;pointer-events:none;z-index:0;"></div>
+        <div style="position:absolute;width:350px;height:350px;border-radius:50%;
+                    background:radial-gradient(circle,rgba(201,168,76,0.06),transparent 70%);
+                    bottom:-80px;right:-60px;pointer-events:none;z-index:0;"></div>
 
-            <!-- Animated AI robot head orbiting avatar -->
-            <div style="position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;">
-              <!-- Rotating outer ring -->
-              <div style="position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(167,139,250,0.2);animation:spin-ceo 20s linear infinite;"></div>
-              <!-- Rotating middle ring with dots -->
-              <div style="position:absolute;inset:16px;border-radius:50%;border:1px solid rgba(201,168,76,0.1);animation:spin-ceo 12s linear infinite reverse;">
-                <div style="position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#C9A84C;box-shadow:0 0 10px rgba(201,168,76,0.9);animation:pulseDot 1.8s ease-in-out infinite;"></div>
-                <div style="position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:#A78BFA;box-shadow:0 0 8px rgba(167,139,250,0.9);animation:pulseDot 2.2s ease-in-out infinite 0.5s;"></div>
-                <div style="position:absolute;top:50%;right:-4px;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:#E8C96D;box-shadow:0 0 8px rgba(232,201,109,0.8);animation:pulseDot 1.5s ease-in-out infinite 1s;"></div>
+        <!-- Corner accents -->
+        <div style="position:absolute;top:0;left:0;width:48px;height:48px;
+                    border-top:2px solid rgba(167,139,250,0.5);border-left:2px solid rgba(167,139,250,0.5);
+                    border-radius:28px 0 0 0;pointer-events:none;z-index:2;"></div>
+        <div style="position:absolute;bottom:0;right:0;width:48px;height:48px;
+                    border-bottom:2px solid rgba(201,168,76,0.4);border-right:2px solid rgba(201,168,76,0.4);
+                    border-radius:0 0 28px 0;pointer-events:none;z-index:2;"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row" style="min-height:0;">
+
+          <!-- LEFT PANEL — Photo + decorative -->
+          <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+                      padding:40px 32px 40px 40px;gap:24px;
+                      background:linear-gradient(180deg,rgba(167,139,250,0.04),rgba(201,168,76,0.02));
+                      border-right:1px solid rgba(180,155,230,0.08);">
+
+            <!-- Animated orbit + photo -->
+            <div style="position:relative;width:220px;height:220px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <!-- Outer dashed orbit -->
+              <div style="position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(167,139,250,0.18);animation:spin-ceo 22s linear infinite;"></div>
+              <!-- Middle ring with floating dots -->
+              <div style="position:absolute;inset:18px;border-radius:50%;border:1px solid rgba(201,168,76,0.12);animation:spin-ceo 14s linear infinite reverse;">
+                <div style="position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#C9A84C;box-shadow:0 0 14px rgba(201,168,76,1);animation:pulseDot 1.8s ease-in-out infinite;"></div>
+                <div style="position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#A78BFA;box-shadow:0 0 10px rgba(167,139,250,0.9);animation:pulseDot 2.2s ease-in-out infinite 0.5s;"></div>
+                <div style="position:absolute;top:50%;right:-5px;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:#E8C96D;box-shadow:0 0 10px rgba(232,201,109,0.9);animation:pulseDot 1.5s ease-in-out infinite 1s;"></div>
+                <div style="position:absolute;top:50%;left:-5px;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:#D4D8E8;box-shadow:0 0 8px rgba(212,216,232,0.7);animation:pulseDot 2.4s ease-in-out infinite 0.3s;"></div>
               </div>
 
-              <!-- Animated AI brain SVG floating behind avatar -->
-              <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.4;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Circuit lines -->
-                <path d="M40 100 H70 V60 H100" stroke="rgba(167,139,250,0.5)" stroke-width="1" stroke-dasharray="4 3" stroke-linecap="round">
-                  <animate attributeName="stroke-dashoffset" values="100;0" dur="3s" repeatCount="indefinite"/>
-                </path>
-                <path d="M160 100 H130 V140 H100" stroke="rgba(201,168,76,0.5)" stroke-width="1" stroke-dasharray="4 3" stroke-linecap="round">
-                  <animate attributeName="stroke-dashoffset" values="100;0" dur="4s" repeatCount="indefinite"/>
-                </path>
-                <path d="M100 40 V70" stroke="rgba(212,216,232,0.4)" stroke-width="1" stroke-dasharray="3 3">
-                  <animate attributeName="stroke-dashoffset" values="60;0" dur="2.5s" repeatCount="indefinite"/>
-                </path>
-                <path d="M100 160 V130" stroke="rgba(167,139,250,0.4)" stroke-width="1" stroke-dasharray="3 3">
-                  <animate attributeName="stroke-dashoffset" values="60;0" dur="3.5s" repeatCount="indefinite"/>
-                </path>
-                <!-- Corner nodes -->
-                <circle cx="40" cy="100" r="4" fill="none" stroke="rgba(167,139,250,0.5)" stroke-width="1">
-                  <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="160" cy="100" r="4" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1">
-                  <animate attributeName="opacity" values="1;0.3;1" dur="2.5s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="100" cy="40" r="3" fill="rgba(212,216,232,0.4)">
-                  <animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="100" cy="160" r="3" fill="rgba(167,139,250,0.4)">
-                  <animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/>
-                </circle>
-              </svg>
-
-              <!-- Avatar ring -->
-              <div style="position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;">
-                <div style="position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,#A78BFA,#C9A84C,#D4D8E8,#A78BFA);animation:spin-ceo 6s linear infinite;z-index:0;"></div>
-                <div style="position:absolute;inset:-1px;border-radius:50%;background:#05050A;z-index:1;"></div>
-                <div style="position:relative;z-index:2;width:110px;height:110px;border-radius:50%;
+              <!-- Photo with spinning conic border -->
+              <div style="position:relative;z-index:2;display:inline-flex;">
+                <div style="position:absolute;inset:-4px;border-radius:50%;
+                            background:conic-gradient(from 0deg,#A78BFA 0%,#C9A84C 25%,#F5E4A8 45%,#C9A84C 65%,#A78BFA 85%,#C9A84C 100%);
+                            animation:spin-ceo 5s linear infinite;z-index:0;"></div>
+                <div style="position:absolute;inset:-1px;border-radius:50%;background:rgba(10,7,25,0.98);z-index:1;"></div>
+                <img src="rehmat.png" alt="Rehmat Ali — AI Automation Architect & Founder, VezelAI"
+                     style="position:relative;z-index:2;width:148px;height:148px;border-radius:50%;
+                            object-fit:cover;object-position:center top;
+                            box-shadow:0 0 50px rgba(167,139,250,0.3),0 0 100px rgba(201,168,76,0.12);"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+                <div style="display:none;position:relative;z-index:2;width:148px;height:148px;border-radius:50%;
                             background:linear-gradient(135deg,rgba(167,139,250,0.15),rgba(201,168,76,0.15));
-                            display:flex;align-items:center;justify-content:center;
-                            font-family:'Plus Jakarta Sans',sans-serif;font-size:2.6rem;font-weight:900;
-                            color:#A78BFA;letter-spacing:-0.02em;
-                            box-shadow:inset 0 0 30px rgba(167,139,250,0.1);">
+                            align-items:center;justify-content:center;
+                            font-family:'Plus Jakarta Sans',sans-serif;font-size:3rem;font-weight:900;color:#A78BFA;">
                   RA
                 </div>
               </div>
             </div>
 
-            <!-- Role badges stacked -->
-            <div class="flex flex-col items-center gap-2">
-              <div class="pill-violet px-4 py-1.5 rounded-full font-mono text-xs font-semibold tracking-widest uppercase">
-                Owner &amp; Founder
+            <!-- Name tag under photo -->
+            <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:900;
+                          background:linear-gradient(135deg,#ffffff,#D4D8E8);
+                          -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+                          letter-spacing:-0.02em;">Rehmat Ali</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(201,168,76,0.7);
+                          letter-spacing:0.1em;text-transform:uppercase;">Founder &amp; CEO</div>
+              <!-- Social proof dot -->
+              <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:#4ADE80;
+                             box-shadow:0 0 8px rgba(74,222,128,0.8);animation:pulseDot 2s ease-in-out infinite;
+                             display:inline-block;flex-shrink:0;"></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(107,114,128,0.7);">
+                  Available for projects
+                </span>
               </div>
-              <div class="flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-dot"></span>
-                <span class="font-mono text-xs" style="color:rgba(201,168,76,0.6)">VezelAI · Pakistan</span>
-              </div>
+            </div>
+
+            <!-- Skill badges vertical -->
+            <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:180px;">
+              <span style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:#A78BFA;
+                           font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;
+                           padding:3px 8px;border-radius:999px;">AI Agents</span>
+              <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:#E8C96D;
+                           font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;
+                           padding:3px 8px;border-radius:999px;">n8n Expert</span>
+              <span style="background:rgba(212,216,232,0.07);border:1px solid rgba(212,216,232,0.2);color:#D4D8E8;
+                           font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;
+                           padding:3px 8px;border-radius:999px;">LLMs</span>
+              <span style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:#A78BFA;
+                           font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;
+                           padding:3px 8px;border-radius:999px;">RAG</span>
+              <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:#E8C96D;
+                           font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;
+                           padding:3px 8px;border-radius:999px;">MERN</span>
+              <span style="background:rgba(212,216,232,0.07);border:1px solid rgba(212,216,232,0.2);color:#D4D8E8;
+                           font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;
+                           padding:3px 8px;border-radius:999px;">FastAPI</span>
             </div>
           </div>
 
-          <!-- Right: Info -->
-          <div class="flex flex-col gap-5 flex-1 text-center lg:text-left">
+          <!-- RIGHT PANEL — Info -->
+          <div style="flex:1;padding:40px 40px 40px 36px;display:flex;flex-direction:column;gap:22px;">
+
+            <!-- Top label -->
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="height:1px;width:32px;background:linear-gradient(90deg,rgba(201,168,76,0.5),transparent);"></div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;
+                           text-transform:uppercase;color:rgba(201,168,76,0.55);">VezelAI · Pakistan</span>
+            </div>
+
+            <!-- Headline -->
             <div>
-              <h2 class="font-display font-black text-white leading-tight mb-1.5"
-                  style="font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.025em;">
-                Rehmat
-                <span class="text-crystal-grad">Ali</span>
+              <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);
+                         font-weight:900;letter-spacing:-0.025em;line-height:1.1;color:#ffffff;margin-bottom:6px;">
+                AI Automation
+                <span style="background:linear-gradient(135deg,#A78BFA 0%,#D4D8E8 50%,#C9A84C 100%);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                  Architect
+                </span>
               </h2>
-              <p class="font-mono text-xs tracking-widest" style="color:rgba(201,168,76,0.6)">
-                AI Automation Architect · Enterprise Systems Engineer
+              <p style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+                        color:rgba(201,168,76,0.65);letter-spacing:0.06em;text-transform:uppercase;">
+                Enterprise Systems Engineer · n8n Specialist · LLM Integrator
               </p>
             </div>
 
-            <p class="text-gray-300 text-sm sm:text-base font-medium leading-relaxed">
+            <!-- Bio -->
+            <p style="font-family:'Space Grotesk',sans-serif;font-size:0.92rem;color:#9CA3AF;line-height:1.75;
+                      border-left:2px solid rgba(167,139,250,0.3);padding-left:16px;">
               Rehmat leads VezelAI with one vision — replacing broken manual operations with
-              <span class="text-crystal-grad font-semibold">fully autonomous AI systems</span>
-              that scale without friction.
+              <strong style="color:#D4D8E8;font-weight:600;">fully autonomous AI systems</strong>
+              that scale without friction. Deep hands-on expertise in AI Agent frameworks, LLMs, n8n, and full-stack automation.
+              Personally architected <strong style="color:#E8C96D;font-weight:600;">140+ automation workflows</strong>
+              across industries — multiplying client output by 4×+ per engagement.
             </p>
 
-            <p class="text-gray-500 text-sm leading-relaxed">
-              Deep hands-on expertise in AI Agent frameworks, LLMs, n8n, and full-stack automation. Rehmat has personally architected
-              <span class="text-gray-300">140+ automation workflows</span> across industries — from agentic CRM pipelines to full AI backends — multiplying client output by 4×+ every engagement.
-            </p>
-
-            <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
-              <span class="pill-violet px-3 py-1 rounded-md font-mono text-xs">AI Agent Design</span>
-              <span class="pill-gold px-3 py-1 rounded-md font-mono text-xs">n8n Expert</span>
-              <span class="pill-plat px-3 py-1 rounded-md font-mono text-xs">LLM Integration</span>
-              <span class="pill-violet px-3 py-1 rounded-md font-mono text-xs">RAG Pipelines</span>
-              <span class="pill-gold px-3 py-1 rounded-md font-mono text-xs">API Orchestration</span>
-              <span class="pill-plat px-3 py-1 rounded-md font-mono text-xs">MERN Stack</span>
+            <!-- Stats row -->
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+              <div style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.12);
+                          border-radius:14px;padding:14px 16px;">
+                <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:900;
+                             background:linear-gradient(135deg,#C9A84C,#F5E4A8);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                  140+</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+                            color:rgba(107,114,128,0.7);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;">
+                  Workflows Shipped</div>
+              </div>
+              <div style="background:rgba(167,139,250,0.05);border:1px solid rgba(167,139,250,0.12);
+                          border-radius:14px;padding:14px 16px;">
+                <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:900;
+                             background:linear-gradient(135deg,#A78BFA,#D4D8E8);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                  3+ yrs</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+                            color:rgba(107,114,128,0.7);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;">
+                  AI Automation</div>
+              </div>
+              <div style="background:rgba(212,216,232,0.03);border:1px solid rgba(212,216,232,0.1);
+                          border-radius:14px;padding:14px 16px;">
+                <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:900;
+                             color:#ffffff;">
+                  4.2<span style="font-size:1.2rem;background:linear-gradient(135deg,#A78BFA,#D4D8E8);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">×</span></div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+                            color:rgba(107,114,128,0.7);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;">
+                  Avg Efficiency Gain</div>
+              </div>
+              <div style="background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.12);
+                          border-radius:14px;padding:14px 16px;">
+                <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:900;
+                             background:linear-gradient(135deg,#C9A84C,#F5E4A8);
+                             -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                  98%</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+                            color:rgba(107,114,128,0.7);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;">
+                  Client Retention</div>
+              </div>
             </div>
 
-            <div class="flex flex-row gap-6 pt-3 border-t justify-center lg:justify-start" style="border-color:rgba(180,155,230,0.08)">
-              <div class="text-center lg:text-left">
-                <div class="text-2xl font-black font-display text-white">140<span class="text-gold-grad">+</span></div>
-                <div class="text-xs text-gray-600 font-mono tracking-wide mt-0.5">Workflows Shipped</div>
-              </div>
-              <div class="w-px" style="background:rgba(180,155,230,0.08)"></div>
-              <div class="text-center lg:text-left">
-                <div class="text-2xl font-black font-display text-crystal-grad">3+ yrs</div>
-                <div class="text-xs text-gray-600 font-mono tracking-wide mt-0.5">AI Automation</div>
-              </div>
-              <div class="w-px" style="background:rgba(180,155,230,0.08)"></div>
-              <div class="text-center lg:text-left">
-                <div class="text-2xl font-black font-display text-white">4.2<span class="text-crystal-grad">×</span></div>
-                <div class="text-xs text-gray-600 font-mono tracking-wide mt-0.5">Efficiency Gain</div>
-              </div>
-              <div class="w-px" style="background:rgba(180,155,230,0.08)"></div>
-              <div class="text-center lg:text-left">
-                <div class="text-2xl font-black font-display text-gold-grad">98%</div>
-                <div class="text-xs text-gray-600 font-mono tracking-wide mt-0.5">Client Retention</div>
-              </div>
+            <!-- Contact CTA buttons -->
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <a href="tel:+923244646260"
+                 style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;
+                        background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);
+                        text-decoration:none;transition:all 0.3s;"
+                 onmouseover="this.style.background='rgba(201,168,76,0.16)';this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-2px)'"
+                 onmouseout="this.style.background='rgba(201,168,76,0.08)';this.style.borderColor='rgba(201,168,76,0.25)';this.style.transform='translateY(0)'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:#E8C96D;">+92 324 4646260</span>
+              </a>
+              <a href="mailto:vezzelai365@gmail.com"
+                 style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;
+                        background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.22);
+                        text-decoration:none;transition:all 0.3s;"
+                 onmouseover="this.style.background='rgba(167,139,250,0.15)';this.style.borderColor='rgba(167,139,250,0.5)';this.style.transform='translateY(-2px)'"
+                 onmouseout="this.style.background='rgba(167,139,250,0.07)';this.style.borderColor='rgba(167,139,250,0.22)';this.style.transform='translateY(0)'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#A78BFA" stroke-width="1.8"/><path d="M2 8l10 7 10-7" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;color:#A78BFA;">vezzelai365@gmail.com</span>
+              </a>
+              <a href="#contact"
+                 style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;
+                        background:linear-gradient(135deg,#C9A84C,#A8862E);
+                        text-decoration:none;transition:all 0.3s;
+                        box-shadow:0 0 24px rgba(201,168,76,0.25);"
+                 onmouseover="this.style.boxShadow='0 0 40px rgba(201,168,76,0.45)';this.style.transform='translateY(-2px)'"
+                 onmouseout="this.style.boxShadow='0 0 24px rgba(201,168,76,0.25)';this.style.transform='translateY(0)'">
+                <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;color:#05050A;">Book Free Audit ➔</span>
+              </a>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1213,15 +1305,7 @@
   </div>
 </section>
 
-<style>
-  @keyframes spin-ceo{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
-  }
-</style>
-
-<!-- ─── Section line ─── -->
-<div class="section-line max-w-7xl mx-auto px-12"></div>
+<!-- placeholder end of leadership — continue below -->
 
 
 <!-- ═══════════════════════════════════════════════════
@@ -1736,12 +1820,58 @@
       Book a complimentary 45-minute <strong class="text-gray-400">AI automation strategy audit</strong>. We'll map exactly which workflows can be automated with <strong class="text-gray-400">n8n, AI agents, and LLMs</strong>, quantify efficiency gains, and outline a deployment roadmap — zero obligation.
     </p>
 
+    <!-- ── Direct Contact Info Row ── -->
+    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-6 mb-10" style="transition-delay:0.25s">
+      <!-- Rehmat Ali -->
+      <a href="tel:+923244646260"
+         class="flex items-center gap-3 px-5 py-3 rounded-xl group transition-all duration-300"
+         style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);"
+         onmouseover="this.style.background='rgba(201,168,76,0.13)';this.style.borderColor='rgba(201,168,76,0.45)'"
+         onmouseout="this.style.background='rgba(201,168,76,0.07)';this.style.borderColor='rgba(201,168,76,0.2)'">
+        <span style="width:34px;height:34px;border-radius:50%;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="text-left">
+          <div class="font-mono text-xs tracking-widest uppercase" style="color:rgba(201,168,76,0.5)">Rehmat Ali</div>
+          <div class="font-display font-semibold text-white text-sm">+92 324 4646260</div>
+        </div>
+      </a>
+      <!-- Agency Phone -->
+      <a href="tel:+923126442664"
+         class="flex items-center gap-3 px-5 py-3 rounded-xl group transition-all duration-300"
+         style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.2);"
+         onmouseover="this.style.background='rgba(167,139,250,0.13)';this.style.borderColor='rgba(167,139,250,0.45)'"
+         onmouseout="this.style.background='rgba(167,139,250,0.07)';this.style.borderColor='rgba(167,139,250,0.2)'">
+        <span style="width:34px;height:34px;border-radius:50%;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="text-left">
+          <div class="font-mono text-xs tracking-widest uppercase" style="color:rgba(167,139,250,0.5)">Agency</div>
+          <div class="font-display font-semibold text-white text-sm">+92 312 6442664</div>
+        </div>
+      </a>
+      <!-- Email -->
+      <a href="mailto:vezzelai365@gmail.com"
+         class="flex items-center gap-3 px-5 py-3 rounded-xl group transition-all duration-300"
+         style="background:rgba(212,216,232,0.05);border:1px solid rgba(212,216,232,0.15);"
+         onmouseover="this.style.background='rgba(212,216,232,0.1)';this.style.borderColor='rgba(212,216,232,0.35)'"
+         onmouseout="this.style.background='rgba(212,216,232,0.05)';this.style.borderColor='rgba(212,216,232,0.15)'">
+        <span style="width:34px;height:34px;border-radius:50%;background:rgba(212,216,232,0.08);border:1px solid rgba(212,216,232,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#D4D8E8" stroke-width="1.8"/><path d="M2 8l10 7 10-7" stroke="#D4D8E8" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <div class="text-left">
+          <div class="font-mono text-xs tracking-widest uppercase" style="color:rgba(212,216,232,0.4)">Email</div>
+          <div class="font-display font-semibold text-white text-sm">vezzelai365@gmail.com</div>
+        </div>
+      </a>
+    </div>
+
     <!-- Contact card -->
     <div class="prism-card rounded-2xl p-8 sm:p-10 text-left reveal max-w-2xl mx-auto" style="transition-delay:0.3s">
       <div class="ca-tl"></div>
       <div class="ca-br"></div>
 
-      <form class="flex flex-col gap-5" onsubmit="handleSubmit(event)">
+      <form id="contact-form" class="flex flex-col gap-5" onsubmit="handleSubmit(event)">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="flex flex-col gap-1.5">
             <label class="text-xs font-mono tracking-widest uppercase" style="color:rgba(201,168,76,0.5)">Full Name</label>
@@ -1799,6 +1929,84 @@
   </div>
 </section>
 
+<!-- ═══ SUCCESS POPUP MODAL ═══ -->
+<div id="success-popup" style="display:none;position:fixed;inset:0;z-index:99999;align-items:center;justify-content:center;padding:20px;">
+  <!-- Backdrop -->
+  <div id="popup-backdrop" onclick="closeSuccessPopup()"
+       style="position:absolute;inset:0;background:rgba(5,5,10,0.85);backdrop-filter:blur(8px);"></div>
+  <!-- Card -->
+  <div style="position:relative;z-index:1;max-width:420px;width:100%;
+              background:rgba(10,8,22,0.97);border:1px solid rgba(201,168,76,0.3);border-radius:24px;
+              box-shadow:0 0 0 1px rgba(201,168,76,0.1),0 8px 60px rgba(123,94,167,0.3),0 32px 80px rgba(0,0,0,0.7);
+              padding:40px 36px;text-align:center;
+              animation:popupIn 0.5s cubic-bezier(0.34,1.56,0.64,1);">
+    <!-- Top shimmer line -->
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;border-radius:24px 24px 0 0;
+                background:linear-gradient(90deg,transparent,rgba(201,168,76,0.7),rgba(167,139,250,0.5),transparent);"></div>
+    <!-- Corner accents -->
+    <div style="position:absolute;top:0;left:0;width:28px;height:28px;border-top:1px solid rgba(201,168,76,0.5);border-left:1px solid rgba(201,168,76,0.5);border-radius:24px 0 0 0;"></div>
+    <div style="position:absolute;bottom:0;right:0;width:28px;height:28px;border-bottom:1px solid rgba(167,139,250,0.4);border-right:1px solid rgba(167,139,250,0.4);border-radius:0 0 24px 0;"></div>
+
+    <!-- Check icon -->
+    <div style="width:68px;height:68px;border-radius:50%;margin:0 auto 20px;
+                background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(167,139,250,0.1));
+                border:2px solid rgba(201,168,76,0.35);
+                display:flex;align-items:center;justify-content:center;
+                box-shadow:0 0 30px rgba(201,168,76,0.2);">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+        <path d="M5 13l4 4L19 7" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <animate attributeName="stroke-dasharray" from="0 30" to="30 0" dur="0.5s" fill="freeze" begin="0.2s"/>
+        </path>
+      </svg>
+    </div>
+
+    <!-- Heading -->
+    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;
+               letter-spacing:-0.02em;margin-bottom:10px;">
+      Request Received! 🚀
+    </h3>
+
+    <!-- Message -->
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:#9CA3AF;line-height:1.6;margin-bottom:6px;">
+      Thank you for reaching out to <span style="color:#E8C96D;font-weight:600;">VezelAI</span>. We've received your inquiry and our team will review it right away.
+    </p>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:rgba(201,168,76,0.6);margin-bottom:24px;letter-spacing:0.03em;">
+      We'll get back to you within <strong style="color:#C9A84C;">24 hours.</strong>
+    </p>
+
+    <!-- Contact quick links -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:16px;
+                background:rgba(255,255,255,0.025);border-radius:14px;border:1px solid rgba(180,155,230,0.08);">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(107,114,128,0.7);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Need urgent help? Contact us directly</p>
+      <a href="tel:+923244646260" style="display:flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px;border-radius:10px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;color:#E8C96D;font-weight:600;">Rehmat Ali — +92 324 4646260</span>
+      </a>
+      <a href="mailto:vezzelai365@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px;border-radius:10px;background:rgba(167,139,250,0.05);border:1px solid rgba(167,139,250,0.12);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#A78BFA" stroke-width="1.8"/><path d="M2 8l10 7 10-7" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;color:#A78BFA;font-weight:600;">vezzelai365@gmail.com</span>
+      </a>
+    </div>
+
+    <!-- Close button -->
+    <button onclick="closeSuccessPopup()"
+            style="width:100%;padding:12px 24px;border-radius:12px;border:none;cursor:pointer;
+                   background:linear-gradient(135deg,#C9A84C,#A8862E);
+                   font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;font-weight:700;
+                   color:#05050A;letter-spacing:0.01em;
+                   box-shadow:0 0 24px rgba(201,168,76,0.3);">
+      Got it, thanks! ✓
+    </button>
+  </div>
+</div>
+<style>
+  @keyframes popupIn{
+    from{opacity:0;transform:scale(0.85) translateY(20px);}
+    to{opacity:1;transform:scale(1) translateY(0);}
+  }
+  #success-popup.show{display:flex!important;}
+</style>
+
 
 <!-- ═══════════════════════════════════════════════════
      FOOTER
@@ -1837,6 +2045,10 @@
          onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(107,114,128,0.5)'">Tech Stack</a>
       <a href="#contact" class="font-mono text-xs transition-colors duration-300" style="color:rgba(107,114,128,0.5)"
          onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(107,114,128,0.5)'">Contact</a>
+      <a href="tel:+923244646260" class="font-mono text-xs transition-colors duration-300" style="color:rgba(107,114,128,0.5)"
+         onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(107,114,128,0.5)'">+92 324 4646260</a>
+      <a href="mailto:vezzelai365@gmail.com" class="font-mono text-xs transition-colors duration-300" style="color:rgba(107,114,128,0.5)"
+         onmouseover="this.style.color='#A78BFA'" onmouseout="this.style.color='rgba(107,114,128,0.5)'">vezzelai365@gmail.com</a>
     </div>
   </div>
 </footer>
@@ -1906,13 +2118,32 @@
   function handleSubmit(e) {
     e.preventDefault();
     const btn = document.getElementById('submit-btn');
-    btn.textContent = '✓ Request Received — We\'ll be in touch within 24h!';
-    btn.style.background = 'linear-gradient(135deg,rgba(167,139,250,0.15),rgba(201,168,76,0.1))';
-    btn.style.color = '#E8C96D';
-    btn.style.border = '1px solid rgba(201,168,76,0.3)';
-    btn.style.boxShadow = '0 0 24px rgba(201,168,76,0.15)';
+    btn.textContent = 'Sending…';
     btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('contact-form').reset();
+      btn.textContent = 'Book My Free Audit ➔';
+      btn.disabled = false;
+      showSuccessPopup();
+    }, 600);
   }
+
+  function showSuccessPopup() {
+    const popup = document.getElementById('success-popup');
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSuccessPopup() {
+    const popup = document.getElementById('success-popup');
+    popup.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Close popup on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSuccessPopup();
+  });
 
   // ── Smooth anchor scroll — respects prefers-reduced-motion ──
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
