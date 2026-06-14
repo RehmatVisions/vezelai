@@ -109,14 +109,15 @@
   <!-- ═══ PERFORMANCE: Preconnect & DNS Prefetch ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
   <link rel="dns-prefetch" href="https://n8n-jcmw-production.up.railway.app" />
 
-  <!-- ═══ FONTS: Load display-swap to avoid FOIT ═══ -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- ═══ FONTS: Non-blocking async load ═══ -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" /></noscript>
 
   <!-- ═══ TAILWIND CDN ═══ -->
-  <script src="https://cdn.tailwindcss.com"></script>  <script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
     tailwind.config = {
 
       theme: {
@@ -522,12 +523,14 @@
     ::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.2);border-radius:4px;}
     ::-webkit-scrollbar-thumb:hover{background:rgba(201,168,76,0.4);}
 
-    /* mobile menu */
+    /* ── Mobile menu hidden by default ── */
     #mobile-menu{
+      display:none;
       background:rgba(5,5,10,0.97);
-      backdrop-filter:blur(24px);
+      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
       border-bottom:1px solid rgba(180,155,230,0.07);
     }
+    #mobile-menu.is-open{ display:flex; }
 
     /* input focus */
     input:focus,textarea:focus{outline:none;}
@@ -542,13 +545,74 @@
     :target{scroll-margin-top:72px;}
 
     /* ── Accessibility: respect reduced motion ── */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        animation-duration:0.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:0.01ms!important;
       }
-      .reveal { opacity:1; transform:none; }
+      .reveal{opacity:1;transform:none;}
+    }
+
+    /* ════════════════════════════════════
+       MOBILE RESPONSIVE & PERFORMANCE
+    ════════════════════════════════════ */
+
+    /* Zero horizontal overflow on all devices */
+    html,body{max-width:100vw;overflow-x:hidden;}
+    *,*::before,*::after{box-sizing:border-box;}
+    section,footer,nav,main{overflow-x:hidden;}
+
+    /* Section lines — no padding bleed */
+    .section-line{margin-left:0;margin-right:0;}
+
+    @media(max-width:768px){
+      /* Reduce heavy GPU blur on mobile */
+      .prism-card{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+      .navbar{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+      #chat-window{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+
+      /* Lighter blobs on mobile */
+      .blob{filter:blur(50px)!important;}
+
+      /* Kill noise grain on mobile — heavy SVG filter paint */
+      body::after{display:none;}
+
+      /* Slow float animations — less jank */
+      .animate-float{animation-duration:9s!important;}
+      .animate-float-2{animation-duration:11s!important;}
+      .animate-float-3{animation-duration:10s!important;}
+
+      /* Reduce grid bg complexity */
+      .grid-bg{background-size:48px 48px;}
+
+      /* Hero: ensure right column doesn't overflow */
+      #services-cards{width:100%!important;max-width:100%!important;}
+
+      /* Leadership card left panel: no right border on mobile */
+      .leadership-left-panel{
+        border-right:none!important;
+        border-bottom:1px solid rgba(180,155,230,0.08)!important;
+        padding:28px 20px!important;
+      }
+
+      /* Disable card hover transforms on touch — prevents stuck states */
+      .prism-card:hover{transform:none;}
+      .btn-gold:hover{transform:none;}
+      .btn-ghost:hover{transform:none;}
+    }
+
+    @media(max-width:480px){
+      /* Chat window fits screen on small phones */
+      #chat-window{
+        right:12px!important;left:12px!important;
+        width:auto!important;max-width:calc(100vw - 24px)!important;
+        bottom:84px!important;
+      }
+      #chat-toggle,#chat-toggle-ring{right:16px!important;bottom:18px!important;}
+
+      /* Hero heading — prevent text overflow */
+      h1{word-break:break-word;}
     }
   </style>
 </head>
@@ -619,7 +683,7 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden px-5 pb-6 pt-3 flex flex-col gap-4">
+  <div id="mobile-menu" class="md:hidden px-5 pb-6 pt-3 flex-col gap-4">
     <a href="#hero" class="nav-link py-2 text-base" onclick="closeMobileMenu()">Home</a>
     <a href="#services" class="nav-link py-2 text-base" onclick="closeMobileMenu()">Services</a>
     <a href="#leadership" class="nav-link py-2 text-base" onclick="closeMobileMenu()">About</a>
@@ -1107,7 +1171,7 @@
         <div class="relative z-10 flex flex-col lg:flex-row" style="min-height:0;">
 
           <!-- LEFT PANEL — Photo + decorative -->
-          <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+          <div class="leadership-left-panel" style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
                       padding:40px 32px 40px 40px;gap:24px;
                       background:linear-gradient(180deg,rgba(167,139,250,0.04),rgba(201,168,76,0.02));
                       border-right:1px solid rgba(180,155,230,0.08);">
@@ -2093,17 +2157,30 @@
   const b3 = document.getElementById('bar3');
   let open = false;
 
+  function openMobileMenu() {
+    open = true;
+    mobileMenu.classList.add('is-open');
+    b1.style.transform='translateY(6px) rotate(45deg)';
+    b2.style.opacity='0';
+    b3.style.transform='translateY(-6px) rotate(-45deg)';
+    b3.style.width='20px';
+  }
+
+  function closeMobileMenu() {
+    open = false;
+    mobileMenu.classList.remove('is-open');
+    b1.style.transform=''; b2.style.opacity='';
+    b3.style.transform=''; b3.style.width='';
+  }
+
   toggle.addEventListener('click', () => {
-    open = !open;
-    mobileMenu.classList.toggle('hidden', !open);
-    if(open){
-      b1.style.transform='translateY(6px) rotate(45deg)';
-      b2.style.opacity='0';
-      b3.style.transform='translateY(-6px) rotate(-45deg)';
-      b3.style.width='20px';
-    } else {
-      b1.style.transform=''; b2.style.opacity='';
-      b3.style.transform=''; b3.style.width='';
+    open ? closeMobileMenu() : openMobileMenu();
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if(open && !toggle.contains(e.target) && !mobileMenu.contains(e.target)){
+      closeMobileMenu();
     }
   });
 
